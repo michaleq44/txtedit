@@ -1,0 +1,48 @@
+#appwin {
+    font-family: monospace;
+    background-color: #09010c;
+    color: #fefeff;
+}
+
+#dialog {
+    font-family: monospace;
+    background-color: #09010c;
+    color: #fefeff;
+}
+
+button {
+    font-family: monospace;
+    border-radius: 0;
+    border: 1px solid #fefeff;
+}
+
+#menubar {
+    font-family: monospace;
+    background-color: #000000;
+    color: #fefeff;
+    border-bottom: 1px solid #eeeeff;
+}
+
+#file {
+    font-family: monospace;
+    background-color: #000000;
+    color: #fefeff;
+    border: 1px solid #eeeeff;
+}
+
+#help {
+    font-family: monospace;
+    background-color: #000000;
+    color: #fefeff;
+    border: 1px solid #eeeeff;
+}
+
+menuitem:hover {
+    background-color: #220011;
+}
+
+#txtview.view {
+    background-color: #09010c;
+    color: #ffeeff;
+    font-family: monospace;
+}
