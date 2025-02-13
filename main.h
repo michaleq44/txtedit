@@ -24,7 +24,7 @@ static void activate(GtkApplication *app, gpointer user_data) {
     window = gtk_application_window_new(app);
     gtk_window_set_title(GTK_WINDOW(window), "txtedit (worse than mspaint2)");
     gtk_window_set_default_size(GTK_WINDOW(window), 800, 600);
-    g_signal_connect(window, "destroy", G_CALLBACK(save_file), NULL);
+    g_signal_connect(window, "delete-event", G_CALLBACK(quit_prog), NULL);
 
     css = gtk_css_provider_new();
     gtk_css_provider_load_from_path(css, "../data/style.css", NULL);
