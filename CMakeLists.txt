@@ -8,7 +8,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/build/bin/")
 
 if (CMAKE_BUILD_TYPE MATCHES Release)
     message("Compiling Release build...")
-    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -mwindows")
+    set(CMAKE_EXE_LINKER_FLAGS "-mwindows")
 elseif (CMAKE_BUILD_TYPE MATCHES Debug)
     message("Compiling Debug build...")
 endif ()
