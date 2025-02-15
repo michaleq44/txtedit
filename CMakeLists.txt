@@ -4,7 +4,7 @@ project(txtedit C)
 set(CMAKE_C_STANDARD 11)
 
 set(MSYS_PATH "$ENV{MSYS_PATH}")
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "D:/Michalo/C/txtedit/build/bin/")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/build/bin/")
 
 if (CMAKE_BUILD_TYPE MATCHES Release)
     message("Compiling Release build...")
