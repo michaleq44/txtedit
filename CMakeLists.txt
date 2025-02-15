@@ -4,11 +4,12 @@ project(txtedit C)
 set(CMAKE_C_STANDARD 11)
 
 set(MSYS_PATH "$ENV{MSYS_PATH}")
+file(MAKE_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/build/bin/")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/build/bin/")
 
 if (CMAKE_BUILD_TYPE MATCHES Release)
     message("Compiling Release build...")
-    set(CMAKE_EXE_LINKER_FLAGS "-mwindows")
+    set(CMAKE_C_FLAGS "-mwindows")
 elseif (CMAKE_BUILD_TYPE MATCHES Debug)
     message("Compiling Debug build...")
 endif ()
