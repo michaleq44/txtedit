@@ -1,0 +1,42 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+defaults:
+  run:
+    shell: msys2 {0}
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: msys2/setup-msys2@v2
+      with:
+        release: false
+        update: false
+        msystem: UCRT64
+        install: >-
+          make
+          mingw-w64-ucrt-x86_64-gcc
+          mingw-w64-ucrt-x86_64-gtk3
+          git
+      id: msys2
+    - name: make debug
+      env:
+        MSYS_PATH: ${{ steps.msys2.outputs.msys2-location }}
+        run: make debug
+      
+    - name: make release
+      env:
+        MSYS_PATH: ${{ steps.msys2.outputs.msys2-location }}
+        run: make release
+    
+    - run: git config --global core.autocrlf input
+    - uses: actions/checkout@v4
+        
