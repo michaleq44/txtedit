@@ -46,3 +46,10 @@ menuitem:hover {
     color: #ffeeff;
     font-family: monospace;
 }
+
+#lnview {
+    background-color: #09010c;
+    color: #ffeeff;
+    font-family: monospace;
+    border: #000000 solid 1px
+}

@@ -14,7 +14,8 @@
 
 int status;
 GtkApplication *app;
-GtkWidget *window, *grid, *menubar, *txtview, *scrlwin;
+GtkWidget *window, *grid, *menubar, *txtview, *scrlwin, *lineview;
+GtkTextBuffer *buf;
 GtkCssProvider *css;
 char* savefile = "unnamed.txt";
 gboolean saved = FALSE;
@@ -23,7 +24,8 @@ char *last = "";
 static void activate(GtkApplication *app, gpointer user_data) {
     window = gtk_application_window_new(app);
     gtk_window_set_title(GTK_WINDOW(window), "txtedit (worse than mspaint2)");
-    gtk_window_set_default_size(GTK_WINDOW(window), 800, 600);
+    gtk_window_set_default_size(GTK_WINDOW(window), 816, 600);
+    gtk_window_set_icon_from_file(GTK_WINDOW(window), "../data/icon.png", NULL);
     g_signal_connect(window, "delete-event", G_CALLBACK(quit_prog), NULL);
 
     css = gtk_css_provider_new();
