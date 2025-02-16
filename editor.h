@@ -23,7 +23,6 @@ static void key_callback(GdkEventKey event, gpointer user_data) {
     buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(txtview));
     n_lines = gtk_text_buffer_get_line_count(buffer);
 
-    g_print("n_lines: %d\n", n_lines);
     for (int i = 1; i <= n_lines+1; i++) {
         strcat(text, g_strdup_printf("%d\n", i));
     }

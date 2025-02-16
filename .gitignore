@@ -2,3 +2,5 @@
 /cmake-build-release
 /build
 /build/*
+deps/
+/release

@@ -1,11 +1,10 @@
 cmake_minimum_required(VERSION 3.30)
-project(txtedit C)
+project(txtedit LANGUAGES C VERSION 1.1.0)
 
 set(CMAKE_C_STANDARD 11)
 
 set(MSYS_PATH "$ENV{MSYS_PATH}")
-file(MAKE_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/build/bin/")
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/build/bin/")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}")
 
 if (CMAKE_BUILD_TYPE MATCHES Release)
     message("Compiling Release build...")
