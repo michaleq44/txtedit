@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.30)
-project(txtedit LANGUAGES C VERSION 1.1.0)
+project(txtedit LANGUAGES C VERSION 1.2.0)
 
 set(CMAKE_C_STANDARD 11)
 
