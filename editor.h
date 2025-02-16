@@ -30,14 +30,31 @@ static void key_callback(GtkWidget *w, GdkEventKey *event, gpointer user_data) {
     }
     buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(lineview));
     gtk_text_buffer_set_text(buffer, text, strlen(text));
-    if (event->type == GDK_KEY_PRESS) {
-        ctrl = (event->keyval == GDK_KEY_Control_L || event->keyval == GDK_KEY_Control_R);
-    } else if (event->type == GDK_KEY_RELEASE) {
-        ctrl = 1 - (event->keyval == GDK_KEY_Control_L || event->keyval == GDK_KEY_Control_R);
+    if (event->state == GDK_CONTROL_MASK) {
+        switch (event->keyval) {
+            case GDK_KEY_n:
+                new_file();
+                break;
+            case GDK_KEY_o:
+                open_file();
+                break;
+            case GDK_KEY_s:
+                save_file();
+                break;
+            case GDK_KEY_q:
+                quit_prog();
+                break;
+            default:;
+        }
     }
-#ifdef DEBUG
-    g_print("button press: %s | ctrl: %d | type: %d\n", gdk_keyval_name(event->keyval), ctrl, event->type);
-#endif
+    if (event->state == GDK_CONTROL_MASK | GDK_SHIFT_MASK) {
+        switch (event->keyval) {
+            case GDK_KEY_S:
+                saveas_file();
+                break;
+            default:;
+        }
+    }
 }
 
 static void btn_callback(GtkWidget *w, GdkEventButton *event) {
@@ -66,6 +83,7 @@ static void txt_init() {
     gtk_widget_add_events(txtview, GDK_KEY_PRESS);
     g_signal_connect(txtview, "key-press-event", G_CALLBACK(key_callback), NULL);
     g_signal_connect(txtview, "button-press-event", G_CALLBACK(btn_callback), NULL);
+    g_signal_connect(txtview, "button-release-event", G_CALLBACK(btn_callback), NULL);
     gtk_widget_set_can_focus(txtview, TRUE);
     /*gtk_widget_set_vexpand(lineview, TRUE);
     gtk_widget_set_hexpand(lineview, FALSE);
