@@ -64,4 +64,5 @@ Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: de
 
 [Run]
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
+Filename: "appwiz.cpl"; Description: "Open Programs and Features so you can remove your old text editor"; Flags: nowait postinstall shellexec skipifsilent
 

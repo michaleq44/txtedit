@@ -13,12 +13,14 @@ extern GtkCssProvider *css;
 extern GtkTextBuffer *buf;
 gchar *text;
 GValue val;
+gboolean ctrl, alt;
 
-static void key_callback(GdkEventKey event, gpointer user_data) {
+static void key_callback(GtkWidget *w, GdkEventKey *event, gpointer user_data) {
     guint n_lines;
     GtkTextBuffer *buffer;
     text = malloc(1000000);
     strcpy(text, "");
+    gtk_widget_grab_focus(txtview);
 
     buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(txtview));
     n_lines = gtk_text_buffer_get_line_count(buffer);
@@ -28,6 +30,21 @@ static void key_callback(GdkEventKey event, gpointer user_data) {
     }
     buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(lineview));
     gtk_text_buffer_set_text(buffer, text, strlen(text));
+    if (event->type == GDK_KEY_PRESS) {
+        ctrl = (event->keyval == GDK_KEY_Control_L || event->keyval == GDK_KEY_Control_R);
+    } else if (event->type == GDK_KEY_RELEASE) {
+        ctrl = 1 - (event->keyval == GDK_KEY_Control_L || event->keyval == GDK_KEY_Control_R);
+    }
+#ifdef DEBUG
+    g_print("button press: %s | ctrl: %d | type: %d\n", gdk_keyval_name(event->keyval), ctrl, event->type);
+#endif
+}
+
+static void btn_callback(GtkWidget *w, GdkEventButton *event) {
+#ifdef DEBUG
+    g_print("button press: %d\n", event->button);
+#endif
+    gtk_widget_grab_focus(txtview);
 }
 
 static void txt_init() {
@@ -48,6 +65,8 @@ static void txt_init() {
     gtk_text_view_set_right_margin(GTK_TEXT_VIEW(txtview), 10);
     gtk_widget_add_events(txtview, GDK_KEY_PRESS);
     g_signal_connect(txtview, "key-press-event", G_CALLBACK(key_callback), NULL);
+    g_signal_connect(txtview, "button-press-event", G_CALLBACK(btn_callback), NULL);
+    gtk_widget_set_can_focus(txtview, TRUE);
     /*gtk_widget_set_vexpand(lineview, TRUE);
     gtk_widget_set_hexpand(lineview, FALSE);
     gtk_widget_set_size_request(lineview, 16, 200);*/
@@ -66,4 +85,5 @@ static void txt_init() {
     gtk_widget_set_vexpand(scrlwin, TRUE);
     gtk_widget_set_name(scrlwin, "txtview");
     gtk_grid_attach(GTK_GRID(grid), scrlwin, 0, 1, 1, 1);
+    gtk_widget_grab_focus(txtview);
 }

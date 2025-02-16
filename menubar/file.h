@@ -72,18 +72,15 @@ static void open_file() {
     res = gtk_dialog_run(GTK_DIALOG(dialog));
 
     if (res == GTK_RESPONSE_ACCEPT) {
-        char *txt;
         gsize nlen;
         GtkFileChooser *chooser = GTK_FILE_CHOOSER(dialog);
         savefile = gtk_file_chooser_get_filename(chooser);
 
-        g_file_get_contents(savefile, &txt, &nlen, NULL);
+        g_file_get_contents(savefile, &last, &nlen, NULL);
 
         GtkTextBuffer *buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(txtview));
-        gtk_text_buffer_set_text(buffer, txt, nlen);
+        gtk_text_buffer_set_text(buffer, last, nlen);
         saved = TRUE;
-
-        g_free(txt);
     }
 
     gtk_widget_destroy(dialog);

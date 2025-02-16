@@ -8,13 +8,13 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}")
 
 if (CMAKE_BUILD_TYPE MATCHES Release)
     message("Compiling Release build...")
-    set(CMAKE_C_FLAGS "-mwindows")
+    set(CMAKE_EXE_LINKER_FLAGS "-mwindows")
 elseif (CMAKE_BUILD_TYPE MATCHES Debug)
+    set(CMAKE_C_FLAGS "-DDEBUG")
     message("Compiling Debug build...")
 endif ()
 
 include_directories("${MSYS_PATH}/ucrt64/include/gtk-3.0" "${MSYS_PATH}/ucrt64/include/pango-1.0" "${MSYS_PATH}/ucrt64/include/harfbuzz" "${MSYS_PATH}/ucrt64/include/cairo" "${MSYS_PATH}/ucrt64/include/freetype2" "${MSYS_PATH}/ucrt64/include/pixman-1" "${MSYS_PATH}/ucrt64/include/gdk-pixbuf-2.0" "${MSYS_PATH}/ucrt64/include/libpng16" "${MSYS_PATH}/ucrt64/include/webp -DLIBDEFLATE_DLL" "${MSYS_PATH}/ucrt64/include/atk-1.0" "${MSYS_PATH}/ucrt64/include/fribidi" "${MSYS_PATH}/ucrt64/include/glib-2.0" "${MSYS_PATH}/ucrt64/lib/glib-2.0/include")
-
 add_executable(txtedit main.c
         main.h
         menubar/menubar.h

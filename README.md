@@ -10,6 +10,8 @@ requires:
 - MSYS2 root directory in MSYS_PATH environmental variable
 - mingw-w64-ucrt-x86_64-gtk3 package installed in MSYS2 for gtk3
 - mingw-w64-ucrt-x86_64-gcc package installed in MSYS2 for gcc
+- zip package installed in MSYS2 for packaging
+- InnoSetup installed and in PATH for packaging
 - MSYS2 /ucrt64/bin/ and /usr/bin/ in PATH
 - make or cmake as a compilation method (you can also copy the command from the Makefile.mk to the console)
 
