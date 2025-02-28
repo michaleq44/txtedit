@@ -1,4 +1,4 @@
-#include "main.h"
+#include <main.h>
 
 int main(int argc, char** argv) {
     app = gtk_application_new("io.github.michaleq44.txtedit", G_APPLICATION_DEFAULT_FLAGS);

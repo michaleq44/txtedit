@@ -1,5 +1,5 @@
 #appwin {
-    font-family: monospace;
+    /*font-family: monospace;*/
     background-color: #09010c;
     color: #fefeff;
 }
@@ -37,19 +37,25 @@ button {
     border: 1px solid #eeeeff;
 }
 
+menuitem {
+    font-family: monospace;
+}
+
 menuitem:hover {
     background-color: #220011;
 }
 
-#txtview.view {
-    background-color: #09010c;
-    color: #ffeeff;
+#txtview {
     font-family: monospace;
 }
 
-#lnview {
+#txtview text {
+    color: #dedede;
     background-color: #09010c;
-    color: #ffeeff;
-    font-family: monospace;
-    border: #000000 solid 1px
+    caret-color: #ffffff;
+}
+
+#txtview text selection {
+    color: #09010c;
+    background-color: #eeeeff;
 }

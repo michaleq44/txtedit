@@ -3,15 +3,15 @@
 #endif
 
 #ifndef MAIN_H
-#include "../main.h"
+#include <main.h>
 #endif
 
 #ifndef FILE_H
-#include "file.h"
+#include <menubar/file.h>
 #endif
 
 #ifndef HELP_H
-#include "help.h"
+#include <menubar/help.h>
 #endif
 
 extern int status;
@@ -29,6 +29,7 @@ static void menubar_init() {
 
     file_menu_init();
     help_menu_init();
+
 
     gtk_grid_attach(GTK_GRID(grid), menubar, 0, 0, 1, 1);
 }

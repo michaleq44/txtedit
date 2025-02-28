@@ -3,7 +3,7 @@
 #endif
 
 #ifndef MAIN_H
-#include "../main.h"
+#include <main.h>
 #endif
 
 extern int status;
@@ -13,6 +13,37 @@ extern GtkCssProvider *css;
 extern char* savefile;
 extern gboolean saved;
 extern char *last;
+
+static GtkWidget *menu_item_new_with_keyboard(const char* desc, const gchar* shortcut) {
+    GtkWidget *menu_item = gtk_menu_item_new();
+    GtkWidget *hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 5);
+    GtkWidget *dlabel, *klabel;
+    dlabel = gtk_label_new(desc);
+    char *format = malloc(1000);
+    strcpy(format, "<span color=\"#999999\" gravity=\"west\">");
+    strcat(format, shortcut);
+    strcat(format, "</span>");
+    klabel = gtk_label_new(format);
+    gtk_label_set_use_markup(GTK_LABEL(klabel), TRUE);
+    gtk_label_set_xalign(GTK_LABEL(klabel), 1.0f);
+    gtk_label_set_xalign(GTK_LABEL(dlabel), 0.0f);
+
+    gtk_label_set_single_line_mode(GTK_LABEL(dlabel), TRUE);
+    gtk_label_set_single_line_mode(GTK_LABEL(klabel), TRUE);
+
+    gtk_box_pack_start(GTK_BOX(hbox), dlabel, TRUE, TRUE, 0);
+    gtk_box_pack_end(GTK_BOX(hbox), klabel, TRUE, TRUE, 0);
+
+    gtk_container_add(GTK_CONTAINER(menu_item), hbox);
+
+    return menu_item;
+}
+
+static gboolean streq(gchar* s1, gchar* s2) {
+    if (strlen(s1) != strlen(s2)) return FALSE;
+    for (int i = 0; i < strlen(s1); i++) if (s1[i] != s2[i]) return FALSE;
+    return TRUE;
+}
 
 static void quit_prog() {
     char *txt;
@@ -43,6 +74,7 @@ static void quit_prog() {
 
 static void open_file() {
     char *txt1;
+    gsize nlen;
     GtkTextBuffer *buf;
     GtkTextIter siter, eiter;
     buf = gtk_text_view_get_buffer(GTK_TEXT_VIEW(txtview));
@@ -72,16 +104,19 @@ static void open_file() {
     res = gtk_dialog_run(GTK_DIALOG(dialog));
 
     if (res == GTK_RESPONSE_ACCEPT) {
-        gsize nlen;
         GtkFileChooser *chooser = GTK_FILE_CHOOSER(dialog);
         savefile = gtk_file_chooser_get_filename(chooser);
 
         g_file_get_contents(savefile, &last, &nlen, NULL);
-
-        GtkTextBuffer *buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(txtview));
-        gtk_text_buffer_set_text(buffer, last, nlen);
+        g_print("%d\n", nlen);
+        gtk_text_buffer_set_text(buf, "", 0);
+        gtk_text_buffer_get_start_iter(buf, &siter);
+        gtk_text_buffer_get_end_iter(buf, &eiter);
+        //g_print("%s", gtk_text_buffer_get_text(buf, &siter, &eiter, FALSE));
         saved = TRUE;
+
     }
+    gtk_text_buffer_insert(buf, &siter, last, nlen);
 
     gtk_widget_destroy(dialog);
 }
@@ -174,19 +209,19 @@ static void file_menu_init() {
     file_menu = gtk_menu_new();
     gtk_menu_item_set_submenu(GTK_MENU_ITEM(file_label), file_menu);
 
-    save = gtk_menu_item_new_with_label("Save");
+    save = menu_item_new_with_keyboard("Save", "Ctrl+S");
     g_signal_connect(save, "activate", G_CALLBACK(save_file), NULL);
 
-    saveas = gtk_menu_item_new_with_label("Save As...");
+    saveas = menu_item_new_with_keyboard("Save As...", "Ctrl+Shift+S");
     g_signal_connect(saveas, "activate", G_CALLBACK(saveas_file), NULL);
 
-    open = gtk_menu_item_new_with_label("Open");
+    open = menu_item_new_with_keyboard("Open...", "Ctrl+O");
     g_signal_connect(open, "activate", G_CALLBACK(open_file), NULL);
 
-    quit = gtk_menu_item_new_with_label("Quit");
+    quit = menu_item_new_with_keyboard("Quit", "Ctrl+Q");
     g_signal_connect(quit, "activate", G_CALLBACK(quit_prog), NULL);
 
-    neew = gtk_menu_item_new_with_label("New");
+    neew = menu_item_new_with_keyboard("New", "Ctrl+N");
     g_signal_connect(neew, "activate", G_CALLBACK(new_file), NULL);
 
     gtk_menu_attach(GTK_MENU(file_menu), neew, 0, 1, 0, 1);

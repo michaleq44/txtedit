@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "txtedit"
-#define MyAppVersion "1.1.0"
+#define MyAppVersion "1.2.2"
 #define MyAppPublisher "michaleq44"
 #define MyAppURL "https://github.com/michaleq44/txtedit"
 #define MyAppExeName "bin\txtedit.exe"
@@ -38,7 +38,7 @@ PrivilegesRequired=lowest
 PrivilegesRequiredOverridesAllowed=dialog
 OutputDir=D:\Michalo\C\txtedit\release
 OutputBaseFilename=txtedit v{#MyAppVersion}-win64-setup
-SetupIconFile=D:\Michalo\C\txtedit\icon.ico
+SetupIconFile=D:\Michalo\C\txtedit\data\icon.ico
 SolidCompression=yes
 WizardStyle=modern
 
@@ -51,9 +51,10 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 [Files]
 Source: "D:\Michalo\C\txtedit\build\release\{#MyAppExeName}"; DestDir: "{app}\bin"; Flags: ignoreversion
 Source: "D:\Michalo\C\txtedit\LICENSE"; DestDir: "{app}"; Flags: ignoreversion
-Source: "D:\Michalo\C\txtedit\icon.ico"; DestDir: "{app}"; Flags: ignoreversion
+Source: "D:\Michalo\C\txtedit\data\icon.ico"; DestDir: "{app}"; Flags: ignoreversion
 Source: "D:\Michalo\C\txtedit\README.md"; DestDir: "{app}"; Flags: ignoreversion
-Source: "D:\Michalo\C\txtedit\data\*"; DestDir: "{app}\data"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "D:\Michalo\C\txtedit\data\icon.png"; DestDir: "{app}\data"; Flags: ignoreversion
+Source: "D:\Michalo\C\txtedit\data\style.css"; DestDir: "{app}\data"; Flags: ignoreversion
 Source: "D:\Michalo\C\txtedit\release\share\*"; DestDir: "{app}\share"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "D:\Michalo\C\txtedit\release\bin\*"; DestDir: "{app}\bin"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files

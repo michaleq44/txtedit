@@ -5,21 +5,21 @@
 #include <gtk/gtk.h>
 
 #ifndef MENUBAR_H
-#include "menubar/menubar.h"
+#include <menubar/menubar.h>
 #endif
 
 #ifndef EDITOR_H
-#include "editor.h"
+#include <editor.h>
 #endif
 
 int status;
 GtkApplication *app;
-GtkWidget *window, *grid, *menubar, *txtview, *scrlwin, *lineview;
+GtkWidget *window, *grid, *menubar, *txtview, *scrlwin;
 GtkTextBuffer *buf;
 GtkCssProvider *css;
-char* savefile = "unnamed.txt";
+gchar* savefile = (gchar*)"unnamed.txt";
 gboolean saved = FALSE;
-char *last = "";
+gchar *last = (gchar*)"";
 
 static void activate(GtkApplication *app, gpointer user_data) {
     window = gtk_application_window_new(app);

@@ -22,6 +22,7 @@ requires:
 - run:
     - `cmake` with `Debug/Release` build type (eg. `cmake {args} -DCMAKE_BUILD_TYPE=Debug`) (I use CLion so I don't know how CMake actually works)
     - `make debug` or `make release`
+    - if you're compiling the package (`make release`) you also need a `release` folder with a `bin` folder holding dlls and a `share` folder holding the glib schemas. you can get both of those from the Releases page
 - congratulations! you have compiled my beautiful program! now, because of the dependencies you have all the libraries needed but if you were to redistribute a modified version make sure to include all the dlls in the release
 - if you don't trust my abilities you can use `ldd txtedit.exe` in order to check the needed dlls
 
