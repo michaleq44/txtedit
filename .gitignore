@@ -3,5 +3,7 @@
 /build
 /build/*
 deps/
-/release
-*.a
+release/bin
+release/share
+release/v*
+release/txtedit v*

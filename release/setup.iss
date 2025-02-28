@@ -1,5 +1,4 @@
 #define MyAppName "txtedit"
-#define MyAppVersion "1.2.2"
 #define MyAppPublisher "michaleq44"
 #define MyAppURL "https://github.com/michaleq44/txtedit"
 #define MyAppExeName "bin\txtedit.exe"
@@ -27,15 +26,15 @@ ArchitecturesAllowed=x64compatible
 ArchitecturesInstallIn64BitMode=x64compatible
 DefaultGroupName={#MyAppName}
 AllowNoIcons=yes
-LicenseFile=D:\Michalo\C\txtedit\LICENSE
-InfoBeforeFile=D:\Michalo\C\txtedit\preinstall.rtf
-InfoAfterFile=D:\Michalo\C\txtedit\postinstall.rtf
+LicenseFile={#SrcDir}\LICENSE
+InfoBeforeFile={#SrcDir}\release\preinstall.rtf
+InfoAfterFile={#SrcDir}\release\postinstall.rtf
 ; Remove the following line to run in administrative install mode (install for all users).
 PrivilegesRequired=lowest
 PrivilegesRequiredOverridesAllowed=dialog
-OutputDir=D:\Michalo\C\txtedit\release
+OutputDir={#SrcDir}\release
 OutputBaseFilename=txtedit v{#MyAppVersion}-win64-setup
-SetupIconFile=D:\Michalo\C\txtedit\data\icon.ico
+SetupIconFile={#SrcDir}\data\icon.ico
 SolidCompression=yes
 WizardStyle=modern
 
@@ -46,14 +45,14 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "D:\Michalo\C\txtedit\build\release\{#MyAppExeName}"; DestDir: "{app}\bin"; Flags: ignoreversion
-Source: "D:\Michalo\C\txtedit\LICENSE"; DestDir: "{app}"; Flags: ignoreversion
-Source: "D:\Michalo\C\txtedit\data\icon.ico"; DestDir: "{app}"; Flags: ignoreversion
-Source: "D:\Michalo\C\txtedit\README.md"; DestDir: "{app}"; Flags: ignoreversion
-Source: "D:\Michalo\C\txtedit\data\icon.png"; DestDir: "{app}\data"; Flags: ignoreversion
-Source: "D:\Michalo\C\txtedit\data\style.css"; DestDir: "{app}\data"; Flags: ignoreversion
-Source: "D:\Michalo\C\txtedit\release\share\*"; DestDir: "{app}\share"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "D:\Michalo\C\txtedit\release\bin\*"; DestDir: "{app}\bin"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "{#SrcDir}\build\release\{#MyAppExeName}"; DestDir: "{app}\bin"; Flags: ignoreversion
+Source: "{#SrcDir}\LICENSE"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#SrcDir}\data\icon.ico"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#SrcDir}\README.md"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#SrcDir}\data\icon.png"; DestDir: "{app}\data"; Flags: ignoreversion
+Source: "{#SrcDir}\data\style.css"; DestDir: "{app}\data"; Flags: ignoreversion
+Source: "{#SrcDir}\release\share\*"; DestDir: "{app}\share"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "{#SrcDir}\release\bin\*"; DestDir: "{app}\bin"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]

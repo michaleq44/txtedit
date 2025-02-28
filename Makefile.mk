@@ -30,7 +30,7 @@ pkg: _r
 	cp -f ./LICENSE "./release/v$(PROJECT_VERSION)/"
 	cp -f ./build/release/bin/txtedit.exe "./release/v$(PROJECT_VERSION)/bin/"
 	cd release ; zip -rv "./txtedit v$(PROJECT_VERSION)-win64.zip" "./v$(PROJECT_VERSION)"
-	iscc ./setup.iss
+	export APPVER=${PROJECT_VERSION} ; ./release/innosetupwrap.bat
 
 release: _r
 	cd build/release/bin ; ./txtedit
